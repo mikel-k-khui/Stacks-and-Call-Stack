@@ -2,7 +2,9 @@
 
 The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a competitive sport.  This article will summarize the concept of stack in computation and software with specific to programming language (i.e. Node.js / Javascript).
 
-!["Episode 1 – Introduction – Learn To Stack"](https://www.youtube.com/watch?v=F89vHYoM8XM)
+!["Episode 1 – Introduction – Learn To Stack"](<a href="http://www.youtube.com/watch?feature=player_embedded&v=F89vHYoM8XM
+" target="_blank"><img src="http://img.youtube.com/vi/F89vHYoM8XM/0.jpg" 
+alt="Sport Stack" width="240" height="180" border="10" /></a>)
 
 What is stack?
 The word can be confusing within the technology and computer science world: 
