@@ -1,6 +1,6 @@
 # Stack and Call Stack
 
-The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computation science and software with specific to programming language (i.e. Node.js / Javascript).
+The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computational science and software with specific to programming language (i.e. Node.js / Javascript).
 
 ## What is stack?
 
@@ -31,7 +31,7 @@ A visual example of stack from Wikipedia:
 You can find the concept of stack in every day life with the classic example of trays in cafeteria.  [Stacked parking][c] is a more modern example.
 
 The credit for earliest formative application of stack in computation belongs to Alan M. Turing[<sup>7</sup>][7].  Many of today’s common computational concepts (e.g. using call stack to track subroutines) were discussed in his 1945 paper.  Other common computational applications of the stack include:
--	backtracking (in gaming, web browsers, word processors, spoilers: hooks and class in React);
+-	backtracking (in gaming, web browsers, word processors, **spoilers**: hooks and class in Javascript's ```React``` library);
 -	hardware memory allocations;
 -	prefix and postfix calculations;
 -	check for matching tags in markup languages (e.g. HTML and XML); and
