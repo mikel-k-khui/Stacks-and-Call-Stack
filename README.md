@@ -127,14 +127,14 @@ Repeatable use of temporary data storage significantly reduced the need for hard
 ## How does call stack work in programming languages?
 Call stack is used when a program is processed by an interpreter (e.g. broweser for Javascript).  The concept and fundamental operation of a call stack is similar across most programming languages.  *Fun fact: some programming language, like COBOL, do not use call stack.*
 
-The call stack is assigned a register by the host hardware to track where the program last executed.  The call stack is notified when the sub-routine is completed (i.e. via a return statement in *Javascript*), then the sub-routine is popped from the call stack with the pointer returning to its previous location (i.e. the memory location of the next topmost item in the call stack).  There are other memory allocation process (i.e. memory heap) and sub-routine entry (i.e. stack frame) technical name involve in this process but we can skip over them for a generalized example here.
+The call stack is assigned a register by the host hardware to track where the program last executed.  The call stack is notified when the sub-routine is completed (i.e. via the ```return``` statement in *Javascript*). The sub-routine is subsequently popped from the call stack with the pointer returning to its previous location (i.e. the memory location of the next topmost item in the call stack).  There are other memory allocation process (i.e. memory heap) and sub-routine entry (i.e. stack frame) technical name involve in this process but we can skip them for a generalized example here.
 
 See this Javascript [example][e] on basic operation of call stack.
 
 Note in the above example ```console.log(“Hello “ + who);``` is not a sub-routine but a side-effect. ```Undefined``` is automatically added to the stack when ```return``` is not stated or stated without an explicit value.
 
 ## Call stack and requests to outside of the program.
-Call stack becomes interesting when it interacts with the host environment (i.e. Javascript engine). Each programming language takes a different approach to run their environemnt, so we will focus only on Javascript.
+Call stack becomes more interesting when it interacts with the host environment (i.e. Javascript engine). Each programming language takes a different approach to run their environemnt, so we will focus only on Javascript.
 
 Javasript runs on a “single-thread” - it only has one call stack and it reacts based on events occurrences.  This is generally sufficient until a program needs to send or receive data outside of the program (e.g. host machine hard drive, audio / visual inputs, another server, etc.).  These data transmission often requires time to process which holds up the stack and, by extension, the application or website – *not the best user experience*.
 
