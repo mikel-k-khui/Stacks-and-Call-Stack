@@ -10,7 +10,7 @@ The word without context can be confusing within the technology and computer sci
 -	“protocol stack”[<sup>2</sup>][2] is discussed in relations to computer networking;
 -	“stack(s)” in the Apple ecosystem may be the folder view in macOS[<sup>3</sup>][3] or collection of documents in HyperCard[<sup>4</sup>][4];
 -	“stack-based memory”[<sup>5</sup>][5] is about method to add or remove data in computing architectures; and
--	“call stack”[<sup>6</sup>][6] is the management of subroutines in (computer) programming languages.
+-	“call stack”[<sup>6</sup>][6] is the management of sub-routines in (computer) programming languages.
 
 While the other examples are interesting, only the last two are directly relevant applications of the common computational concept – “stack”.  For scope of this article, I will focus on exploring the call stack in programming language (I will briefly touch on hardware memory but not directly speaking to stack-based memory).
 
@@ -30,7 +30,7 @@ A visual example of stack from Wikipedia:
  
 You can find the concept of stack in every day life with the classic example of trays in cafeteria.  [Stacked parking][c] is a more modern example.
 
-The credit for earliest formative application of stack in computation belongs to Alan M. Turing[<sup>7</sup>][7].  Many of today’s common computational concepts (e.g. using call stack to track subroutines) were discussed in his 1945 paper.  Other common computational applications of the stack include:
+The credit for earliest formative application of stack in computation belongs to Alan M. Turing[<sup>7</sup>][7].  Many of today’s common computational concepts (e.g. using call stack to track sub-routines) were discussed in his 1945 paper.  Other common computational applications of the stack include:
 -	backtracking (in gaming, web browsers, word processors, **spoilers**: hooks and class in Javascript's ```React``` library);
 -	hardware memory allocations;
 -	prefix and postfix calculations;
@@ -70,14 +70,14 @@ get getHead() { return this.stack[this.getSize() – 1]; } // this is a non-esse
 // Methods
 push (element) {
   if (!this.isFull()) {
-  this.stack = this.stack.concat(element);
+    this.stack = this.stack.concat(element);
   }
 return this;
 }
 
 pop () { 
   if (!this.isEmpty()) {
-  this.stack = this.stack.slice(0, this.getSize() – 1);
+    this.stack = this.stack.slice(0, this.getSize() – 1);
   }
   return this;
 }
@@ -105,7 +105,7 @@ A simple way would be to dedicate equal amount of tape and time to each program.
 *	you cannot re-use the tape until the program is completed.
 
 This lead to lack of tape for storage as programs demand grew while some tapes sit idle.
-Fortunately, you also noticed program and its sub-routines are invoked linearly with the last sub-routine always processed first.  This linear call and LIFO processing of sub-routines behaves like a stack:
+Fortunately, you also noticed programs and their sub-routines are invoked linearly with the last sub-routine always processed first.  This linear calling and LIFO processing behaves like a stack:
 1.	A sub-routine push itself onto a stack after being called; then
 2.	Popped itself out of the stack after it completes.
 
@@ -115,43 +115,45 @@ The application of applying the stack concept to sub-routine is appropriately na
 
 [Here][d] is a fun activity to illustrate how call stack works.
 
-Applying stack to temporary data storage in memory ensures sub-routines do not destroying data from sub-routines invoked earlier.  Solving the need to protect data in temporary data storage introduced numerois new computational capacities to programming, including:
+Applying stack to temporary data storage in memory ensures sub-routines do not destroy data from sub-routines invoked earlier.  Solving the need to protect data in temporary data storage introduced numerous new computational capacities for programming, including:
 
 *	Recursive or nested sub-routines (e.g. one function calling another);
-*	Pass values between functions (e.g. parameters and closure in *Javascript*);
+*	Passing values between functions (e.g. parameters and closure in *Javascript*);
 *	Modularize commonly used sub-routines (e.g. call same function multiple times in different part of the program); and
-* Significantly more compact programs.
+* Create more compact programs.
 
 Repeatable use of temporary data storage significantly reduced the need for hardware and improved execution speed[<sup>10</sup>][10].  Both factors increased the viability to commercialize computational products – opening the door to eras of software advancement.
 
-## How is call stack work in programming languages?
-Call stack is used when program is processed by an interpreter.  The concept and fundamental operation of a call stack is similar across most programming languages.  *Fun fact: some programming language, like COBOL, do not use call stack.*
+## How does call stack work in programming languages?
+Call stack is used when a program is processed by an interpreter (e.g. broweser for Javascript).  The concept and fundamental operation of a call stack is similar across most programming languages.  *Fun fact: some programming language, like COBOL, do not use call stack.*
 
-The call stack is also assigned a register by the hardware to track where the program last executed.  The call stack is notified when the sub-routine is completed (i.e. via a return statement in *Javascript*), the sub-routine is popped with the pointer returning to its previous location (i.e. the memory location of the next topmost item in the call stack).  There are other memory allocation process (i.e. memory heap) and sub-routine entry (i.e. stack frame) technical name involve but the idea can be generalized here.
+The call stack is assigned a register by the host hardware to track where the program last executed.  The call stack is notified when the sub-routine is completed (i.e. via a return statement in *Javascript*), then the sub-routine is popped from the call stack with the pointer returning to its previous location (i.e. the memory location of the next topmost item in the call stack).  There are other memory allocation process (i.e. memory heap) and sub-routine entry (i.e. stack frame) technical name involve in this process but we can skip over them for a generalized example here.
 
 See this Javascript [example][e] on basic operation of call stack.
 
 Note in the above example ```console.log(“Hello “ + who);``` is not a sub-routine but a side-effect. ```Undefined``` is automatically added to the stack when ```return``` is not stated or stated without an explicit value.
 
 ## Call stack and requests to outside of the program.
-Call stack becomes interesting when it interacts with the hosting environment (i.e. Javascript engine or Yet Another Ruby Virtual machine and interpreters). Each programming language take a different approach, so we will focus on Javascript.
+Call stack becomes interesting when it interacts with the host environment (i.e. Javascript engine). Each programming language takes a different approach to run their environemnt, so we will focus only on Javascript.
 
-Javasript runs on a “single-thread” - it only has one call stack and it reacts based on events occurrences.  This is generally sufficient until a program needs to send or received data outside of the program (e.g. host machine hard drive, audio / visual inputs, another server).  These data transmission often requires time to process and holds up the stack and the website – *not the best user experience*.
+Javasript runs on a “single-thread” - it only has one call stack and it reacts based on events occurrences.  This is generally sufficient until a program needs to send or receive data outside of the program (e.g. host machine hard drive, audio / visual inputs, another server, etc.).  These data transmission often requires time to process which holds up the stack and, by extension, the application or website – *not the best user experience*.
 
-There are different ways for programming languages to handle this problem: Javascript resolves this problem with the event loop (you can ignore the Web API and Callback Queue in the mean time for a generalized example).
+There are different ways for programming languages to handle this problem. Javascript resolves this problem with the event loop (you can ignore the Web API and Callback Queue in the mean time for a generalized example).
 ![Stack operation](https://scotch-res.cloudinary.com/image/upload/w_1050,q_auto:good,f_auto/media/4974/xCkAPcmuQNqQCGpO2avR_Event-loop.png.jpg)
 
-The event loop has a single task of monitoring the Call stack and the call back when the data retrieval or sending is completed:
-1.	When an asynchronous call is made the engine makes the appropriate requests to outside of the program;
+The event loop has a single task of monitoring the Call stack and the call back after the data retrieval or transmission is completed:
+1.	When a call (i.e. asynchronous call in *Javascript*) is made, the engine makes the appropriate requests outside of the program;
 2.	Call stack pops the sub-routine;
-3.	Call stack continues to work through the stack;
-4.	In the mean time, the event loop is notified when the asynchronous call is completed;
-5.	When the calls tack becomes empty, the event loop pushes the returned call back to the Call stack; and
-6.	Call stack executes the last sub-routine.
+3.	Call stack continues to work through the stack and program;
+4.	In the mean time, the event loop is notified when the outside of the program call is completed and waits for call stack availability;
+5.	Once the call stack becomes empty, the event loop pushes the returned call back onto the call stack; and
+6.	Call stack executes this last sub-routine.
 
-Below is an example with ```setTimeOut()``` in *Javascript*.
+Below is an example with ```setTimeOut()``` in *Javascript*:
 
 ![Asynchronous call](https://miro.medium.com/max/808/1*TozSrkk92l8ho6d8JxqF_w.gif)
+
+This is how the Javascript works with the call stack to ensure the sub-routines are executed in the appropriate order.  Again, the call stack only works with the topmost element to ensure the temporary data stored by previous sub-routines are not overwritten.
 
 # Conclusion
 "**Stack**" (click [here][f] for another fun example) can mean multiple things. This article walked through the concept of stack with general explanations on it's application in computation science and software (e.g. Call stack). An example to implement it in Javascript was provide (e.g. arrayStack). Stack was one of the key concepts leading to explosive growth in computational power which enabled rapid commercialization of computational products.  It is still highly relevant in today’s world.
@@ -163,6 +165,14 @@ Please leave any error corrections, constructive feedback, and/or recommendation
 <sup>9</sup> Non-essential operations and derivative concepts include Peak of the top element and Size. These are non-essential as they can be achieved by varying operations of Push and Pop. For example, pop all items out of stack to count the size then push them all back.
 
 # Further Learnings
+Below are some suggested further  learning beyond this summary review of stack and call stack.
+
+## Stack Flow Status
+In stack, a stack can over- or under-flow. These occur when the stack exceeds it's pre-determinded size or reduce the size beyond no item respectively.  Both are edge cases to be considered but the main focus should be on the overflow situation in relation to the call stack.
+
+In Javascript, the call stack is alloted pre-determined amount of temporay memory for the call stack when the program is setup initially.  As such, the call stack can reach it's maximum capacity or [overflows](https://www.freecodecamp.org/news/understanding-the-javascript-call-stack-861e41ae61d4/). This typically happens with recursive function calls with no exit point leading to infinite number of sub-routines.
+
+![Stack overflow](https://cdn-media-1.freecodecamp.org/images/lvjT-ud6XfVQ5KYVWxZZWkKeVTgtJqFD0pWv).
 
 ## Debugging
 [Chrome developer tools](https://developers.google.com/web/tools/chrome-devtools/javascript/reference) comes with the option to view the current call stack.  Alternatively, you can pause the script and review the Call stack to determine what steps were executed to this point.  It also comes with the Async checkbox option to enable async call stacks.
