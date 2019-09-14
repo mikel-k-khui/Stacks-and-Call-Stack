@@ -1,6 +1,6 @@
 # Stack and Call Stack
 
-The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computation and software with specific to programming language (i.e. Node.js / Javascript).
+The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computation science and software with specific to programming language (i.e. Node.js / Javascript).
 
 ## What is stack?
 
@@ -151,7 +151,7 @@ Below is an example with setTimeOut() in Javascript
 ![Asynchronous call](https://miro.medium.com/max/808/1*TozSrkk92l8ho6d8JxqF_w.gif)
 
 # Conclusion
-"**Stack**" (click [here][f] for another fun example) can mean multiple things. This article walked through the concept of stack with some introductory explanation on it's application in computation and software (e.g. Call stack). An example to implement it in Javascript was given (e.g. arrayStack). Stack was one of the key concepts leading to explosive growth in computational power which enabled rapid commercialization of computational products.  It is still highly relevant in today’s world.
+"**Stack**" (click [here][f] for another fun example) can mean multiple things. This article walked through the concept of stack with general explanations on it's application in computation science and software (e.g. Call stack). An example to implement it in Javascript was provide (e.g. arrayStack). Stack was one of the key concepts leading to explosive growth in computational power which enabled rapid commercialization of computational products.  It is still highly relevant in today’s world.
 
 ## Corrections
 Please leave any error corrections, constructive feedback, and/or recommendations in the comments.
