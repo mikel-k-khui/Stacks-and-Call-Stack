@@ -91,9 +91,11 @@ Stack, in it’s purest form, allows only access to the **top-most** element.  T
 
 > allocate hardware memory appropriately
 
+and
+
 > process software routines.
 
-his is where the call stack comes in.
+This is where the call stack comes in.
 
 ## What is call stack?
 Imagine you are working with the tapes in the original Turing machine.  How can you best allot time and amount of tape to each program?
