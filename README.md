@@ -102,7 +102,7 @@ Imagine you are working with the tapes in the original Turing machine.  How can 
 
 A simple way would be to dedicate equal amount of tape and time to each program.  You soon observed two facts:
 *	not all programs run in equal time; and
-*	you cannoy re-use the tape until the program is completed.
+*	you cannot re-use the tape until the program is completed.
 
 This lead to lack of tape for storage as programs demand grew while some tapes sit idle.
 Fortunately, you also noticed program and its sub-routines are invoked linearly with the last sub-routine always processed first.  This linear call and LIFO processing of sub-routines behaves like a stack:
