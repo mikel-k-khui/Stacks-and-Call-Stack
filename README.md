@@ -1,6 +1,6 @@
 # Stack and Call Stack
 
-The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computational science and software with specific to programming language (i.e. Node.js / Javascript).
+The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computational science and software with specific to programming language (i.e. *Javascript*).
 
 ## What is stack?
 
@@ -39,7 +39,7 @@ The credit for earliest formative application of stack in computation belongs to
 
 ## How to build a stack?
 
-Stacks can be easily implemented with an **array** or **linked lists** in most programming languages and there is no single correct way.  The chief challenge with implementation is enforcing stack’s principle functionalities, namely:
+Stacks can be easily implemented with an **array** (i.e. ```Array``` in *Javascript*) or **linked lists** in most programming languages and there is no single correct way.  The chief challenge with implementation is enforcing stack’s principle functionalities, namely:
 
 1)	restricting users push and pop operations to the top-most element; and
 2)	track the stack’s size and capacity to determine if it maybe empty or full.
@@ -107,7 +107,7 @@ Fortunately, you also noticed program and its sub-routines are invoked linearly 
 1.	A sub-routine push itself onto a stack after being called; then
 2.	Popped itself out of the stack after it completes.
 
-The same extends to variables within a sub-routine (i.e. variables and functions in Javascript).
+The same extends to variables within a sub-routine (i.e. variables and ```function``` in *Javascript*).
  
 The application of applying the stack concept to sub-routine is appropriately named “**call stack**”.
 
@@ -116,7 +116,7 @@ The application of applying the stack concept to sub-routine is appropriately na
 Applying stack to temporary data storage in memory ensures sub-routines do not destroying data from sub-routines invoked earlier.  Solving the need to protect data in temporary data storage introduced numerois new computational capacities to programming, including:
 
 *	Recursive or nested sub-routines (e.g. one function calling another);
-*	Pass values between functions (e.g. parameters and closure in Javascript);
+*	Pass values between functions (e.g. parameters and closure in *Javascript*);
 *	Modularize commonly used sub-routines (e.g. call same function multiple times in different part of the program); and
 * Significantly more compact programs.
 
@@ -127,7 +127,7 @@ Call stack is used when program is processed by an interpreter.  The concept and
 
 The call stack is also assigned a register by the hardware to track where the program last executed.  The call stack is notified when the sub-routine is completed (i.e. via a return statement in *Javascript*), the sub-routine is popped with the pointer returning to its previous location (i.e. the memory location of the next topmost item in the call stack).  There are other memory allocation process (i.e. memory heap) and sub-routine entry (i.e. stack frame) technical name involve but the idea can be generalized here.
 
-See this Javascript [example][e] on basic operation of call stack in Javascript.
+See this Javascript [example][e] on basic operation of call stack.
 
 Note in the above example ```console.log(“Hello “ + who);``` is not a sub-routine but a side-effect. ```Undefined``` is automatically added to the stack when ```return``` is not stated or stated without an explicit value.
 
@@ -146,7 +146,8 @@ The event loop has a single task of monitoring the Call stack and the call back 
 4.	In the mean time, the event loop is notified when the asynchronous call is completed;
 5.	When the calls tack becomes empty, the event loop pushes the returned call back to the Call stack; and
 6.	Call stack executes the last sub-routine.
-Below is an example with setTimeOut() in Javascript
+
+Below is an example with ```setTimeOut()``` in *Javascript*.
 
 ![Asynchronous call](https://miro.medium.com/max/808/1*TozSrkk92l8ho6d8JxqF_w.gif)
 
