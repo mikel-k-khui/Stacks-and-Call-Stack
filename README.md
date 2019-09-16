@@ -1,4 +1,5 @@
 # Stack and Call Stack
+*Estimated read time is 8 minutes using assumption of 265 word-per-minute*
 
 The word “stack” has very different meanings in different contexts.  It’s use ranges from a “unit of measure especially for firewood that is equal to 108 cubic feet” in the United Kingdom to a [competitive sport][a]. This article will summarize the concept of stack in computational science and software with specific to programming language (i.e. *Javascript*).
 
@@ -12,7 +13,7 @@ The word without context can be confusing within the technology and computer sci
 -	“stack-based memory”[<sup>5</sup>][5] is about method to add or remove data in computing architectures; and
 -	“call stack”[<sup>6</sup>][6] is the management of sub-routines in (computer) programming languages.
 
-It will take several hours to discuss all the examples listed. This article will fous on the two examples most directly relevant on applying “stack” to computation and software.  For scope of this article, I will focus on exploring the call stack in programming language (I will briefly touch on hardware memory but not directly speaking to stack-based memory).
+It will take several hours to discuss all the examples listed. Also, stack-based memory and call stack were the most directly relevant examples of “stack” in the above list.  The scope of this article will focus on exploring the call stack in programming language. The discussion will briefly touch on hardware memory in a general sense but it is not directly speaking on stack-based memory.
 
 Stack is one of the abstract data types: it is essentially a linear method to manage collections of elements.  Stack’s behaviour is best described as
 
