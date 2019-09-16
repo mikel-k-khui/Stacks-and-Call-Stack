@@ -12,28 +12,28 @@ The word without context can be confusing within the technology and computer sci
 -	“stack-based memory”[<sup>5</sup>][5] is about method to add or remove data in computing architectures; and
 -	“call stack”[<sup>6</sup>][6] is the management of sub-routines in (computer) programming languages.
 
-While the other examples are interesting, only the last two are directly relevant applications of the common computational concept – “stack”.  For scope of this article, I will focus on exploring the call stack in programming language (I will briefly touch on hardware memory but not directly speaking to stack-based memory).
+It will take several hours to discuss all the examples listed. This article will fous on the two examples most directly relevant on applying “stack” to computation and software.  For scope of this article, I will focus on exploring the call stack in programming language (I will briefly touch on hardware memory but not directly speaking to stack-based memory).
 
-Stack is one of abstract data type – it is essentially a linear method to manage collections of elements.  Stack’s behaviour is best described as
+Stack is one of the abstract data types: it is essentially a linear method to manage collections of elements.  Stack’s behaviour is best described as
 
 >“last-in, first-out” (LIFO)
 
-based on the combination of its two principle operations: **Push** and **Pop**. You can read more on the academic explanation on both abstract data types and their axioms and theorems [here][b].  The two most important take away from the academic discussion surrounding stacks are:
+based on the combination of its two principle operations: **Push** and **Pop**. You can read more on the academic explanation on both abstract data types and their axioms and theorems [here][b].  The two most important take aways from the various academic discussion are:
 
 > a stack is **empty** when created.
 
 > a push followed by a pop to the stack means the stack **remains the same**.
 
-A visual example of stack from Wikipedia:
+The axioms sounds rudimentary but they are needed to define stack's critical behaviours before it became common practice.  With theses axioms in mind, below is a visual stack from Wikipedia:
 ![Stack operation](https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png)
 
  
-You can find the concept of stack in every day life with the classic example of trays in cafeteria.  [Stacked parking][c] is a more modern example.
+You can find the concept of stack in every day life with the classic example being trays in cafeteria. Alternatively, [Stacked parking][c] is a more obvious and contemporary example.
 
 The credit for earliest formative application of stack in computation belongs to Alan M. Turing[<sup>7</sup>][7].  Many of today’s common computational concepts (e.g. using call stack to track sub-routines) were discussed in his 1945 paper.  Other common computational applications of the stack include:
 -	backtracking (in gaming, web browsers, word processors, **spoilers**: hooks and class in Javascript's ```React``` library);
 -	hardware memory allocations;
--	prefix and postfix calculations;
+-	prefix and postfix calculators;
 -	check for matching tags in markup languages (e.g. HTML and XML); and
 -	control stack in compiler to translate high-level languages[<sup>8</sup>][8].
 
@@ -44,7 +44,7 @@ Stacks can be easily implemented with an **array** (i.e. ```Array``` in *Javascr
 1)	restricting users push and pop operations to the top-most element; and
 2)	track the stack’s size and capacity to determine if it maybe empty or full.
 
-Other non-essential functionality includes “peeking” the first element[<sup>9</sup>](#footnote).  Many common software programming languages like C/C++, Java, Javascript, etc. has classes to implement stack using array, linked lists, or custom algorithms.  For example, stack can be easily implemented in *Javascript* using built-in functions (```slice```, ```concat```, and ```length```) in the Array class.
+Other non-essential functionality includes “peeking” the first element[<sup>9</sup>](#footnote).  Many common software programming languages like C/C++, Java, Javascript, etc. has classes to implement stack using array, linked lists, or custom algorithms.  For example, stack can be easily implemented in *Javascript* using built-in functions (```slice```, ```concat```, and ```length```) in the Array class. This simple example will simply return the existing stack if it is full; alternatively, the program can throw an error (and you can read more in the further learning section).
 
 ```
 class arrayStack {
@@ -63,26 +63,30 @@ class arrayStack {
 get getMax() { return this.max; } // this may not apply if stack is assumed to have dynamic size
 get getSize() { return this.stack.length; }  // this is a non-essential functionality
 get getStack() { return this.stack; }
-get getHead() { return this.stack[this.getSize() – 1]; } // this is a non-essential functionality
+get getHead() { return this.stack[this.getSize() – 1]; } // the head is at -1 when it is empty
 ```
 
 ```
 // Methods
 push (element) {
-  if (!this.isFull()) {
+  if (!this.isFull()) { // this condition check is needed to prevent over-flow not discussed here
     this.stack = this.stack.concat(element);
-  }
-return this;
-}
+  } 
+  // another option if the stack exceeds its capacity is to throw an error
 
-pop () { 
-  if (!this.isEmpty()) {
-    this.stack = this.stack.slice(0, this.getSize() – 1);
-  }
   return this;
 }
 
-isEmpty() { this.getSize() === 0; } // this is a non-essential functionality
+pop () { 
+  if (!this.isEmpty()) { // this condition check is needed to prevent under-flow not discussed here
+    this.stack = this.stack.slice(0, this.getSize() – 1);
+  }
+  // another option if the stack is empty is to throw an error
+
+  return this;
+}
+
+isEmpty() { this.getSize() === 0; } // this is an non-essential operation
 
 isFull() { this.getSize() > this.size; } // this may not apply if stack is assumed to have dynamic size
 ```
@@ -134,9 +138,9 @@ See this Javascript [example][e] on basic operation of call stack.
 Note in the above example ```console.log(“Hello “ + who);``` is not a sub-routine but a side-effect. ```Undefined``` is automatically added to the stack when ```return``` is not stated or stated without an explicit value.
 
 ## Call stack and requests to outside of the program.
-Call stack becomes more interesting when it interacts with the host environment (i.e. Javascript engine). Each programming language takes a different approach to run their environemnt, so we will focus only on Javascript.
+Call stack becomes more interesting when it interacts with the host environment (i.e. Javascript engine). Each programming language takes a different approach to run their environment, so we will focus only on Javascript.
 
-Javasript runs on a “single-thread” - it only has one call stack and it reacts based on events occurrences.  This is generally sufficient until a program needs to send or receive data outside of the program (e.g. host machine hard drive, audio / visual inputs, another server, etc.).  These data transmission often requires time to process which holds up the stack and, by extension, the application or website – *not the best user experience*.
+Javascript runs on a “single-thread” - it only has one call stack and it reacts based on events occurrences.  This is generally sufficient until a program needs to send or receive data outside of the program (e.g. host machine hard drive, audio / visual inputs, another server, etc.).  These data transmission often requires time to process which holds up the stack and, by extension, the application or website – *not the best user experience*.
 
 There are different ways for programming languages to handle this problem. Javascript resolves this problem with the event loop (you can ignore the Web API and Callback Queue in the mean time for a generalized example).
 ![Stack operation](https://scotch-res.cloudinary.com/image/upload/w_1050,q_auto:good,f_auto/media/4974/xCkAPcmuQNqQCGpO2avR_Event-loop.png.jpg)
@@ -156,7 +160,7 @@ Below is an example with ```setTimeOut()``` in *Javascript*:
 This is how the Javascript works with the call stack to ensure the sub-routines are executed in the appropriate order.  Again, the call stack only works with the topmost element to ensure the temporary data stored by previous sub-routines are not overwritten.
 
 # Conclusion
-"**Stack**" (click [here][f] for another fun example) can mean multiple things. This article walked through the concept of stack with general explanations on it's application in computation science and software (e.g. Call stack). An example to implement it in Javascript was provide (e.g. arrayStack). Stack was one of the key concepts leading to explosive growth in computational power which enabled rapid commercialization of computational products.  It is still highly relevant in today’s world.
+"**Stack**" (click [here][f] for another fun example) can mean multiple things. This article walked through the concept of stack with general explanations on its application in computation science and software (e.g. Call stack). An example to implement it in Javascript was provide (e.g. arrayStack). Stack was one of the key concepts leading to explosive growth in computational power which enabled rapid commercialization of computational products.  It is still highly relevant in today’s world.
 
 ## Corrections
 Please leave any error corrections, constructive feedback, and/or recommendations in the comments.
